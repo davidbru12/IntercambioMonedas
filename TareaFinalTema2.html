@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" cntent="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var cambio=1.08;
+        function menu(){
+            alert("Bienvenidos al intercambiador de monedas.");
+            var valido=false
+            while(valido==false){
+                var opcion=parseFloat(prompt("Puedes realizar estas acciones:\n1. Ver el tipo de cambio.\n2. Convertir cantidades."
+                    +"\n3. Actualizar el tipo de cambio.\n4. Salir\nQue opción deseas realizar (indique el numero)."));
+                switch(opcion){
+                    case 1:
+                        cambioActual();
+                        
+                        break;
+                    case 2:
+                        convertir();
+                        
+                        break;
+                    case 3:
+                        actualizar();
+                        
+                        break;
+                    case 4:
+                        alert("Gracias por usar el intercambiador de monedas. Hasta la proxima.")
+                        valido=true;
+                        break;
+                    default:
+                        alert("No has introducido una opción valida, repite.");
+
+                }
+            }
+            
+        }
+        menu();
+        function cambioActual(){
+            alert("Actualmente el cambio de euro € a dolar estadounidense $ esta a:\n 1€="+cambio+"$")
+        }
+        
+        function convertir(){
+            var valido=false;
+            do{
+                var cantidad=parseInt(prompt("Introduce la cantidad que deseas convertir"));
+                if(isNaN(cantidad)){
+                    alert("No has introducido un numero positivo");
+                    
+                }else{
+                    valido=true;
+                }
+            }while(valido==false);
+            valido=false;
+            var conversion;
+            while(valido==false){
+                var direccion=parseFloat(prompt("Puedes convertir en 2 direcciones(Moneda A: euro € / Moneda B: dolar $):\nDirección 1: Moneda A -> Moneda B\nDirección 2: Moneda B -> Moneda A\nQué dirección quieres utilizar (introduce el número)"));
+                if(direccion==1){
+                    conversion=cantidad*cambio;
+                    alert("El resultado es: "+conversion+"$.");
+                    valido=true;
+                }else if(direccion==2){
+                    conversion=cantidad/cambio;+
+                    alert("El resultado es: "+conversion+"€.");
+                    valido=true;
+                }else{
+                    alert("No has introducido una dirección valida.")
+                }
+            }
+        }
+        
+        function actualizar(){
+            valido=false;
+            var contador=0;
+            while(valido==false){
+                if(contador==0){
+                    cambio=parseFloat(prompt("A continuación puedes actuaizar el cambio. Introduce el nuevo cambio de euro € a dolar estadounidense $"));
+                }else if(contador>0){
+                    cambio=parseFloat(prompt("Introduce el nuevo cambio de euro € a dolar estadounidense $"));
+                }
+                if(isNaN(cambio)){
+                    alert("No has introducido un numero.");
+                }else{
+                    alert("El nuevo cambio es: "+cambio+"$.");
+                    valido=true;
+                }
+                contador++;
+            }
+        }
+        
+    </script>
+</body>
+</html>
